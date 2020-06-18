@@ -60,7 +60,7 @@ $(function() {
         };
 
         self.onBrowserTabVisibilityChange = function(status) {
-            if (status && (self.tab == "#control" || self.tab == "#tab_plugin_consolidate_temp_control") {
+            if (status && (self.tab == "#control" || self.tab == "#tab_plugin_consolidate_temp_control")) {
                 self.onTabChange("#control", "");
             }
         }
