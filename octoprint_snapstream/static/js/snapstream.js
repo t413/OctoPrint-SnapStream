@@ -49,7 +49,7 @@ $(function() {
 
         self.onTabChange = function (current, previous) {
             self.tab = current;
-            if (current == "#control") {
+            if (current == "#control" || current == "#tab_plugin_consolidate_temp_control") {
                 if (self.settings.fallbackonly()) {
                     self.webcamImage.one("error", self.snapStream);
                 } else {
@@ -60,7 +60,7 @@ $(function() {
         };
 
         self.onBrowserTabVisibilityChange = function(status) {
-            if (status && self.tab == "#control") {
+            if (status && (self.tab == "#control" || self.tab == "#tab_plugin_consolidate_temp_control")) {
                 self.onTabChange("#control", "");
             }
         }
