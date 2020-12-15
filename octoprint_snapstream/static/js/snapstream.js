@@ -6,6 +6,7 @@ $(function() {
         self.control = parameters[1];
         self.tab = "";
         self.online = true;
+        self.locked = false;
         self.failureCounter = 0;
         self.webcamImage = $("#webcam_image");
 
@@ -36,7 +37,11 @@ $(function() {
             var currentSrc = self.webcamImage.attr("src");
             if (currentSrc !== undefined && currentSrc.trim() != "") {
                 if (self.online) {
-                    self.webcamImage.attr("src", self.appendNoCacheMarker(self.settings.url()));
+                    if (!self.locked) {
+                      self.locked = true;
+                      self.webcamImage.load(function(){ self.locked = false;});         
+                      self.webcamImage.attr("src", self.appendNoCacheMarker(self.settings.url()));
+                  }
                 }
                 if (self.failureCounter < 4) {
                     self.webcamUpdateTimeout = setTimeout(self.webcamUpdate, 1000 / self.settings.fps());
